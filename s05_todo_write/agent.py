@@ -87,7 +87,7 @@ def run_bash(command: str) -> str:
   if any(d in command for d in dangerous):
     return "Error: Dangerous command detected. Aborting."
   try:
-    r = subprocess.run(command, shell=True, cwd=WORKDIR, capture_output=True, text=True, timeout=120)
+    r = subprocess.run(command, shell=True, cwd=WORKDIR, capture_output=True, text=True, timeout=120, errors="ignore")
     out = (r.stdout + r.stderr).strip()
     return out[:50000] if out else "(no output)"
   except subprocess.TimeoutExpired:
@@ -256,7 +256,7 @@ def permission_hook(block) -> bool:
 
 def log_hook(block):
   """PreToolUse: log every tool call."""
-  args_preview = str(list(block.input.values())[:2])[:60]
+  args_preview = str(list(block.input.values())[:2])[:60000]
   print(f"\033[90m[HOOK] {block.name}({args_preview})\033[0m")
   return None
 

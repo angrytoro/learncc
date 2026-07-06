@@ -1,35 +1,43 @@
-"""Example module with greeting and arithmetic utilities."""
+"""Simple greeting and arithmetic example module.
+
+This module provides basic functions for greeting people and
+performing simple addition, intended as a demonstration of
+type hints, docstrings, and a main guard.
+"""
 
 
-def greet(name: str) -> str:
-    """Return a greeting message for the given name.
+def greet(name: str, greeting: str = "Hello") -> str:
+    """Return a personalised greeting string.
 
     Args:
-        name: The person's name to greet.
+        name: The name of the person to greet.
+        greeting: The greeting word to use (default is "Hello").
 
     Returns:
         A formatted greeting string.
     """
-    return f"Hello, {name}!"
+    return f"{greeting}, {name}!"
 
 
-def add(a: int, b: int) -> int:
-    """Return the sum of two integers.
+def add(a: float, b: float) -> float:
+    """Return the sum of two numbers.
 
     Args:
         a: The first addend.
         b: The second addend.
 
     Returns:
-        The sum of a and b.
+        The arithmetic sum of a and b.
     """
     return a + b
 
 
 def main() -> None:
-    """Run the main program logic."""
+    """Run demonstration of module functions."""
     print(greet("World"))
-    print(add(2, 3))
+    print(greet("Alice", "Hi"))
+    print(add(3, 5))
+    print(add(2.5, 3.7))
 
 
 if __name__ == "__main__":
